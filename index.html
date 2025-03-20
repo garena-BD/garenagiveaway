@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official giveaway Center</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        /* Header Styling */
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 20px; /* Increased padding for larger header */
+            display: flex;
+            align-items: center;
+        }
+        .header img {
+            height: 50px; /* Increased logo size */
+            margin-right: 10px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px; /* Increased font size */
+        }
+
+        /* Image Slider */
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        .slider img {
+            width: 100%;
+            display: none;
+        }
+        .slider img.active {
+            display: block;
+        }
+
+        /* Game Selection */
+        .game-selection {
+            text-align: center;
+            margin: 20px;
+        }
+        .game-selection img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            border: 2px solid #ccc;
+        }
+        .game-selection img.selected {
+            border-color: green;
+        }
+
+        /* Free Redeem Diamonds */
+        .redeem {
+            text-align: center;
+            margin: 20px;
+        }
+        .diamond-box {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            justify-items: center;
+            margin-top: 20px;
+        }
+        .redeem button {
+            padding: 15px 30px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .redeem button:hover {
+            background-color: #45a049;
+        }
+        .diamond-text {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .diamond-emoji {
+            margin-left: 5px;
+        }
+
+        /* Additional Styling for Boxes */
+        .diamond-box div {
+            border: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .diamond-box div:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <img src="logo.png" alt="Logo">
+        <h1>Official giveaway Center</h1>
+    </div>
+
+    <!-- Image Slider -->
+    <div class="slider">
+        <img src="image1.jpg" alt="Image 1" class="active">
+        <img src="image2.jpg" alt="Image 2">
+        <img src="image3.jpg" alt="Image 3">
+    </div>
+
+    <!-- Game Selection -->
+    <div class="game-selection">
+        <h2>Game Selection</h2>
+        <div>
+            <img src="game1.jpg" alt="Game 1" onclick="selectGame(this)">
+            <img src="game2.jpg" alt="Game 2" onclick="selectGame(this)">
+            <img src="game3.jpg" alt="Game 3" onclick="selectGame(this)">
+        </div>
+    </div>
+
+    <!-- Free Redeem Diamonds -->
+    <div class="redeem">
+        <h2>Free Redeem Diamonds</h2>
+        
+        <!-- First Row of Diamond Boxes -->
+        <div class="diamond-box">
+            <div>
+                <button onclick="claimDiamond(25)">25 <span class="diamond-emoji">💎</span></button>
+            </div>
+            <div>
+                <button onclick="claimDiamond(50)">50 <span class="diamond-emoji">💎</span></button>
+            </div>
+            <div>
+                <button onclick="claimDiamond(100)">100 <span class="diamond-emoji">💎</span></button>
+            </div>
+        </div>
+
+        <!-- Second Row of Diamond Boxes -->
+        <div class="diamond-box">
+            <div>
+                <button onclick="claimDiamond(210)">210 <span class="diamond-emoji">💎</span></button>
+            </div>
+            <div>
+                <button onclick="claimDiamond(645)">645 <span class="diamond-emoji">💎</span></button>
+            </div>
+            <div>
+                <button onclick="claimDiamond(688)">688 <span class="diamond-emoji">💎</span></button>
+            </div>
+        </div>
+
+        <!-- Third Row of Diamond Boxes -->
+        <div class="diamond-box">
+            <div>
+                <button onclick="claimDiamond(1080)">1,080 <span class="diamond-emoji">💎</span></button>
+            </div>
+            <div>
+                <button onclick="claimDiamond(1382)">1,382 <span class="diamond-emoji">💎</span></button>
+            </div>
+            <div>
+                <button onclick="claimDiamond(2200)">2,200 <span class="diamond-emoji">💎</span></button>
+            </div>
+        </div>
+
+        <!-- Fourth Row of Diamond Boxes -->
+        <div class="diamond-box">
+            <div>
+                <button onclick="claimDiamond(3520)">3,520 <span class="diamond-emoji">💎</span></button>
+            </div>
+            <div>
+                <button onclick="claimDiamond(4450)">4,450 <span class="diamond-emoji">💎</span></button>
+            </div>
+            <div>
+                <button onclick="claimDiamond(6900)">6,900 <span class="diamond-emoji">💎</span></button>
+            </div>
+        </div>
+
+        <!-- Fifth Row of Diamond Boxes -->
+        <div class="diamond-box">
+            <div>
+                <button onclick="claimDiamond(7360)">7,360 <span class="diamond-emoji">💎</span></button>
+            </div>	
+
+    <script>
+        // Image Slider Functionality
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.slider img');
+
+        setInterval(() => {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }, 3000);
+
+        // Game Selection Functionality
+        function selectGame(imageElement) {
+            const allImages = document.querySelectorAll('.game-selection img');
+            allImages.forEach(img => img.classList.remove('selected'));
+            imageElement.classList.add('selected');
+        }
+
+        // Redeem Diamond Claim Function
+        function claimDiamond(diamond) {
+            alert('You selected ' + diamond + ' Diamond! Please log in to claim.');
+            window.location.href = "login.html"; // Redirect to login page
+        }
+    </script>
+
+</body>
+</html>
